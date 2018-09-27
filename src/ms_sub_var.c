@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 09:20:41 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/25 13:37:41 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 13:51:41 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ms_sub_var(char ***av, char ***env)
 		j = 0;
 		while (env[0][j])
 		{
-			if (av[0][i][0] == '$' && ft_strstr(env[0][j], &av[0][i][1]))
+			if (av[0][i][0] == '$' && ft_strzstr(env[0][j], &av[0][i][1]))
 			{
 				free(av[0][i]);
 				av[0][i] = env[0][j];

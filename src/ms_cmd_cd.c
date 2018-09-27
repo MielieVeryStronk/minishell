@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_cmd_unsetenv.c                                  :+:      :+:    :+:   */
+/*   ms_cmd_cd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:01:23 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 12:19:43 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/27 09:46:10 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/27 14:08:42 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_cmd_unsetenv(char ***av, int ac, char ***env)
+void	ms_cmd_cd(char **av, int ac, char ***env)
 {
-	int		line;
-	int		i;
+	char	*path;
+	char	*buff;
 
-	if (ac != 2)
+	buff = ft_strnew(PATH_MAX);
+	getcwd(buff, PATH_MAX);
+	path = ft_strdup(av[1]);
+	if (ac < 2)
 		ms_err(2);
-	else if (ft_strchr(av[0][1], '='))
-		ms_err(5);
-	else
+	else if (ac > 2)
+		ms_err(6);
+	else if (chdir(path) == 0)
 	{
-		line = ms_find_env(av[0][1], env);
-		if (line >= 0)
-		{
-			free(env[0][line]);
-			i = line + 1;
-			while (env[0][i])
-			{
-				env[0][i - 1] = env[0][i];
-				i++;
-			}
-			env[0][i - 1] = NULL;
-		}
+		av[1] = ft_strdup("OLDPWD");
+		av[2] = buff;
+		ms_cmd_setenv(&av, 3, env);
+		getcwd(buff, PATH_MAX);
+		av[1] = ft_strdup("PWD");
+		av[2] = buff;
+		ms_cmd_setenv(&av, 3, env);
 	}
+	else
+		ms_err(7);
+	if (buff)
+		free(buff);
 }

@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 10:07:20 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 09:31:08 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 12:22:17 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ms_err(int	err)
 {
+	ft_printcolour("red");
+	ft_printf("minishell: ");
 	if (err == 1)
 		{
 			ft_printf("malloc error\n");
@@ -27,4 +29,9 @@ void	ms_err(int	err)
 		ft_printf("env variable not found\n");
 	else if (err == 5)
 		ft_printf("env variable cannot contain '='\n");
+	else if (err == 6)
+		ft_printf("multiple arguments not supported for cd\n");
+	else if (err == 7)
+		ft_printf("invalid path\n");
+	ft_printcolour("cyan");
 }

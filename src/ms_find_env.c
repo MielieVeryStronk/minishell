@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 09:02:46 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 09:03:02 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 13:51:41 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ms_find_env(char *av, char ***env)
 	i = 0;
 	while (env[0][i])
 	{
-		if (ft_strstr(env[0][i], av))
+		if (ft_strzstr(env[0][i], av))
 			return (i);
 		i++;
 	}

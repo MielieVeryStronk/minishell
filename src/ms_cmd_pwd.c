@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_cmd_unsetenv.c                                  :+:      :+:    :+:   */
+/*   ms_cmd_pwd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:01:23 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 12:19:43 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/27 10:02:25 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/27 10:10:09 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_cmd_unsetenv(char ***av, int ac, char ***env)
+void	ms_cmd_pwd(int ac)
 {
-	int		line;
-	int		i;
+	char	*buff;
 
-	if (ac != 2)
-		ms_err(2);
-	else if (ft_strchr(av[0][1], '='))
-		ms_err(5);
-	else
+	buff = ft_strnew(PATH_MAX);
+	if (ac == 1)
 	{
-		line = ms_find_env(av[0][1], env);
-		if (line >= 0)
-		{
-			free(env[0][line]);
-			i = line + 1;
-			while (env[0][i])
-			{
-				env[0][i - 1] = env[0][i];
-				i++;
-			}
-			env[0][i - 1] = NULL;
-		}
+		getcwd(buff, PATH_MAX);
+		ft_printf("%s\n", buff);
 	}
+	else
+		ms_err(2);
+	if (buff)
+		free(buff);
 }

@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 12:14:06 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 09:15:19 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 13:51:04 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/libft/libft.h"
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
 
 void		ft_printcolour(char *colour);
 void		ms_printprompt();
@@ -35,5 +36,8 @@ char		**ms_new_env(char **av, char **old);
 char		*ft_strjoin_mult(int ac, ...);
 int			ms_find_env(char *av, char ***env);
 void		ms_cmd_unsetenv(char ***av, int ac, char ***env);
+void		ms_cmd_cd(char **av, int ac, char ***env);
+void		ms_cmd_pwd(int ac);
+char		*ft_strzstr(const char *haystack, const char *needle);
 
 #endif

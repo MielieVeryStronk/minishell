@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:30:44 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 09:14:30 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 12:09:12 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	ms_cmd_all(char **av, int ac, char ***env)
 		ms_cmd_setenv(&av, ac, env);
 	else if (!ft_strcmp(av[0], "unsetenv"))
 		ms_cmd_unsetenv(&av, ac, env);
+	else if (!ft_strcmp(av[0], "cd"))
+		ms_cmd_cd(av, ac, env);
+	else if (!ft_strcmp(av[0], "pwd"))
+		ms_cmd_pwd(ac);
 	else if (!ft_strcmp(av[0], "./minishell"))
 	{
 		ft_putchar('\n');
