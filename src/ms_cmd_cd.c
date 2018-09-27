@@ -6,11 +6,33 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 09:46:10 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 14:08:42 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 16:33:11 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+char	*ms_cd_dash(char *av, char ***env)
+{
+	char	*path;
+	int		line;
+
+	path = ft_strnew(PATH_MAX);
+	if (!ft_strcmp(av, "-"))
+	{
+		line = ms_find_env("OLDPWD", env);
+		if (line >= 0)
+			path = ft_strdup(ft_strchr(env[0][line], '/'));
+		ft_printf("%s\n", path);
+	}
+	else if (!ft_strcmp(av, "~"))
+	{
+		line = ms_find_env("HOME", env);
+		if (line >= 0)
+		path = ft_strdup(ft_strchr(env[0][line], '/'));
+	}
+	return (path);
+}
 
 void	ms_cmd_cd(char **av, int ac, char ***env)
 {
@@ -20,10 +42,13 @@ void	ms_cmd_cd(char **av, int ac, char ***env)
 	buff = ft_strnew(PATH_MAX);
 	getcwd(buff, PATH_MAX);
 	path = ft_strdup(av[1]);
-	if (ac < 2)
+	if (av[1] && (!ft_strcmp(av[1], "-") || !ft_strcmp(av[1], "~")))
+	{
+		free(path);
+		path = ms_cd_dash(av[1], env);
+	}
+	if (ac != 2)
 		ms_err(2);
-	else if (ac > 2)
-		ms_err(6);
 	else if (chdir(path) == 0)
 	{
 		av[1] = ft_strdup("OLDPWD");
