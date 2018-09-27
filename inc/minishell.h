@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 12:14:06 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 15:41:17 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 09:15:19 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void		ms_cmd_setenv(char ***av, int ac, char ***env);
 int			ms_env_size(char **env);
 char		**ms_new_env(char **av, char **old);
 char		*ft_strjoin_mult(int ac, ...);
+int			ms_find_env(char *av, char ***env);
+void		ms_cmd_unsetenv(char ***av, int ac, char ***env);
 
 #endif

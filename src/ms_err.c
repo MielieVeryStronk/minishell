@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 10:07:20 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 08:47:36 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/27 09:31:08 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ void	ms_err(int	err)
 		ft_printf("incorrect usage of quote\n");
 	else if (err == 4)
 		ft_printf("env variable not found\n");
+	else if (err == 5)
+		ft_printf("env variable cannot contain '='\n");
 }

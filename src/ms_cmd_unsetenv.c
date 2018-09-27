@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_cmd_setenv.c                                    :+:      :+:    :+:   */
+/*   ms_cmd_unsetenv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 14:25:17 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 09:02:58 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/27 09:01:23 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/27 09:38:26 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_cmd_setenv(char ***av, int ac, char ***env)
+void	ms_cmd_unsetenv(char ***av, int ac, char ***env)
 {
 	int		line;
+	int		i;
 
-	if (ac == 1)
-		ms_cmd_env(env);
-	else if (ac != 3)
+	if (ac != 2)
 		ms_err(2);
+	else if (ft_strchr(av[0][1], '='))
+		ms_err(5);
 	else
 	{
 		line = ms_find_env(av[0][1], env);
 		if (line >= 0)
-			env[0][line] = ft_strjoin_mult(3, av[0][1], "=", av[0][2]);
-		else
-			*env = ms_new_env(*av, *env);
+		{
+			ft_printf("hello\n");
+			free(env[0][line]);
+			i = line + 1;
+			while (env[0][i])
+			{
+				env[0][i - 1] = env[0][i];
+				i++;
+			}
+			env[0][i - 1] = NULL;
+		}
 	}
 }
