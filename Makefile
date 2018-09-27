@@ -6,7 +6,7 @@
 #    By: enikel <enikel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 11:24:40 by enikel            #+#    #+#              #
-#    Updated: 2018/09/24 11:28:01 by enikel           ###   ########.fr        #
+#    Updated: 2018/09/26 15:41:31 by enikel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ OBJ_DIR := obj
 LIB_DIR := lib
 
 SRC := minishell.c ft_printcolour.c ms_printprompt.c ms_cmd_all.c ms_cmd_echo.c \
-ms_get_av.c ms_err.c ms_arg_split.c
+ms_get_av.c ms_err.c ms_arg_split.c ms_cmd_env.c ms_env_mlc.c ms_free_tab.c \
+ms_sub_var.c ms_argscnt.c ms_cmd_setenv.c ms_env_size.c ms_new_env.c ft_strjoin_mult.c
 
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 

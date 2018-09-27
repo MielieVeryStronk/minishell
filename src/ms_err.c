@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 10:07:20 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/24 13:09:06 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/26 08:47:36 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	ms_err(int	err)
 			ft_printf("malloc error\n");
 			exit (0);
 		}
+	else if (err == 2)
+		ft_printf("incorrect number of arguments\n");
 	else if (err == 3)
 		ft_printf("incorrect usage of quote\n");
+	else if (err == 4)
+		ft_printf("env variable not found\n");
 }

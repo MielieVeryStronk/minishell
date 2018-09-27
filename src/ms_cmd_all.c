@@ -6,13 +6,13 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:30:44 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/24 14:45:18 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/26 09:15:16 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_cmd_all(char **av, char **env)
+void	ms_cmd_all(char **av, int ac, char ***env)
 {
 	if (!ft_strcmp(av[0], "quit") || !ft_strcmp(av[0], "q")||
 	!ft_strcmp(av[0], "exit"))
@@ -20,7 +20,9 @@ void	ms_cmd_all(char **av, char **env)
 	else if (!ft_strcmp(av[0], "echo"))
 		ms_cmd_echo(av);
 	else if (!ft_strcmp(av[0], "env"))
-		ms_cmd_env(av, env);
+		ms_cmd_env(env);
+	else if (!ft_strcmp(av[0], "setenv"))
+		ms_cmd_setenv(&av, ac, env);
 	else if (!ft_strcmp(av[0], "./minishell"))
 	{
 		ft_putchar('\n');

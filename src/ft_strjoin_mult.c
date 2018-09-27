@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_get_av.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_mult.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 09:19:03 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/26 15:31:52 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/26 15:56:07 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_get_av(char ***env)
+char	*ft_strjoin_mult(int ac, ...)
 {
-	char	**av;
-	char	*line;
-	int		ac;
+	char	*str;
+	char	*temp;
+	va_list valist;
 
-	*env = ms_env_mlc(*env);
-	get_next_line(1, &line);
-	if (ft_strlen(line) == 0)
-		ft_printf("");
-	else
+	str = ft_strnew(0);
+	va_start(valist, ac);
+	while (ac > 0)
 	{
-		ac = ms_argscnt(line);
-		av = ms_arg_split(line);
-		free(line);
-		if (av != NULL)
-		{
-			ms_sub_var(&av, env);
-			ms_cmd_all(av, ac, env);
-		}
+		temp = str;
+		str = ft_strjoin(str, va_arg(valist, char *));
+		if (temp)
+			free(temp);
+		ac--;
 	}
-	//ms_free_tab(env);
+	va_end(valist);
+	return (str);
 }

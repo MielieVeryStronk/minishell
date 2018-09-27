@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_get_av.c                                        :+:      :+:    :+:   */
+/*   ms_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 09:19:03 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/25 09:07:09 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/25 09:10:52 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_get_av(char ***env)
+void	ms_free_tab(char **tab)
 {
-	char	**av;
-	char	*line;
-	int		ac;
+	int		i;
 
-	*env = ms_env_mlc(*env);
-	get_next_line(1, &line);
-	if (ft_strlen(line) == 0)
-		ft_printf("");
-	else
+	i = 0;
+	while (tab[i])
 	{
-		ac = ms_argscnt(line);
-		av = ms_arg_split(line);
-		free(line);
-		if (av != NULL)
-		{
-			ms_sub_var(&av, env);
-			ms_cmd_all(av, ac, env);
-		}
+		if (tab[i])
+			free(tab[i]);
 	}
-	//ms_free_tab(env);
+	/*if (tab)
+		free(tab);*/
 }

@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 16:17:29 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/24 14:42:46 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/26 09:07:47 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		main(int argc, char **argv, char **env)
 	while (1)
 	{
 		ms_printprompt();
-		ms_get_av(env);
+		ms_get_av(&env);
 	}
 	return (0);
 }

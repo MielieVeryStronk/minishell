@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_get_av.c                                        :+:      :+:    :+:   */
+/*   ms_argscnt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 09:19:03 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/25 14:33:07 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/25 14:44:08 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_get_av(char ***env)
+int		ms_argscnt(const char *str)
 {
-	char	**av;
-	char	*line;
-	int		ac;
+	int	i;
+	int	num;
 
-	*env = ms_env_mlc(*env);
-	get_next_line(1, &line);
-	if (ft_strlen(line) == 0)
-		ft_printf("");
-	else
+	i = 0;
+	num = 0;
+	while (str[i] != '\0')
 	{
-		ac = ms_argscnt(line);
-		av = ms_arg_split(line);
-		free(line);
-		if (av != NULL)
+		if (str[i] == '"')
 		{
-			ms_sub_var(&av, env);
-			ms_cmd_all(av, ac, env);
+			i++;
+			while (str[i] != '"' && str[i] != '\0')
+				i++;
+			if (str[i] != '"')
+			{
+				ms_err(3);
+				return (-1);
+			}
+			else
+				num++;
 		}
+		else if (str[i] != ' ' && str[i] != '\t' && (str[i + 1] == ' ' ||
+		str[i + 1] == '\t' || str[i + 1] == '\0'))
+			num++;
+		i++;
 	}
-	//ms_free_tab(env);
+	return (num);
 }

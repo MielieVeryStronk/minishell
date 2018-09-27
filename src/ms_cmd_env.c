@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_get_av.c                                        :+:      :+:    :+:   */
+/*   ms_cmd_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 09:19:03 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/25 08:38:22 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/25 14:40:19 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_get_av(char ***env)
+void	ms_cmd_env(char ***env)
 {
-	char	**av;
-	char	*line;
-	int		ac;
+	int		i;
 
-	*env = ms_env_mlc(*env);
-	get_next_line(1, &line);
-	if (ft_strlen(line) == 0)
-		ft_printf("");
-	else
+	i = 0;
+	while (env[0][i])
 	{
-		ac = ms_argscnt(line);
-		av = ms_arg_split(line);
-		free(line);
-		if (av != NULL)
-		{
-			ms_sub_var(&av, env);
-			ms_cmd_all(av, ac, env);
-		}
+		ft_printf("%s\n", env[0][i]);
+		i++;
 	}
-	//ms_free_tab(env);
 }

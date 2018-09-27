@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_get_av.c                                        :+:      :+:    :+:   */
+/*   ms_new_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 09:19:03 by enikel           ###   ########.fr       */
+/*   Created: 2018/09/26 12:57:43 by enikel            #+#    #+#             */
+/*   Updated: 2018/09/26 15:47:23 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_get_av(char ***env)
+char	**ms_new_env(char **av, char **old)
 {
-	char	**av;
-	char	*line;
-	int		ac;
+	int		i;
+	int		size;
+	char	**new;
 
-	*env = ms_env_mlc(*env);
-	get_next_line(1, &line);
-	if (ft_strlen(line) == 0)
-		ft_printf("");
-	else
+	i = 0;
+	size = ms_env_size(old);
+	new = (char**)malloc((sizeof(char *) * (size + 2)));
+	new[size + 1] = NULL;
+	while (old[i])
 	{
-		ac = ms_argscnt(line);
-		av = ms_arg_split(line);
-		free(line);
-		if (av != NULL)
-		{
-			ms_sub_var(&av, env);
-			ms_cmd_all(av, ac, env);
-		}
+		new[i] = ft_strdup(old[i]);
+		i++;
 	}
-	//ms_free_tab(env);
+	new[i] = ft_strjoin_mult(3, av[1], "=", av[2]);
+	return (new);
 }
