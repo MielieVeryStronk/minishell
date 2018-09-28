@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 12:14:06 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 13:51:04 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/28 11:52:34 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <limits.h>
+# include <sys/types.h>
+# include <signal.h>
 
 void		ft_printcolour(char *colour);
 void		ms_printprompt();

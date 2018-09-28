@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 10:07:20 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 12:22:17 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/28 09:26:00 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void	ms_err(int	err)
 		ft_printf("multiple arguments not supported for cd\n");
 	else if (err == 7)
 		ft_printf("invalid path\n");
+	else if (err == 8)
+		ft_printf("invalid command/directory\n");
 	ft_printcolour("cyan");
 }
