@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 12:14:06 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/28 11:52:34 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 12:58:56 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ms_cmd_all(char **av, int ac, char ***env);
 void		ms_cmd_echo(char **av);
 void		ms_err(int	err);
 void		ms_get_av(char ***env);
-char		**ms_arg_split(char *str);
+char		**ms_arg_split(char *str, int ac);
 void		ms_cmd_env(char ***env);
 char		**ms_env_mlc(char **old);
 void		ms_free_tab(char **tab);

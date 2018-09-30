@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 09:19:03 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 12:58:46 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ms_get_av(char ***env)
 	else
 	{
 		ac = ms_argscnt(line);
-		av = ms_arg_split(line);
+		av = ms_arg_split(line, ac);
 		free(line);
 		if (av != NULL)
 		{

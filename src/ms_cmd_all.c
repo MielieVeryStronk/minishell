@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:30:44 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/30 10:30:44 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 12:33:02 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void	ft_cmd_sys(char ***av, char ***env)
 		line = ms_find_env("PATH=", env);
 		path = ft_strsplit(ft_strchr(env[0][line], '/'), ':');
 		line = 0;
-		while (path[line])
+		if (!access(av[0][0], F_OK))
+		{
+			if (!execve(av[0][0], av[0], *env))
+				err = 0;
+		}
+		else while (path[line])
 		{
 			if (!access(path[line], F_OK))
 			{

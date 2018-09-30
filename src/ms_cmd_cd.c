@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 09:46:10 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/28 09:05:13 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 13:07:38 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ms_cmd_cd(char **av, int ac, char ***env)
 	char	*path;
 	char	*buff;
 	char	*temp;
+	int		line;
 
 	buff = ft_strnew(PATH_MAX);
 	getcwd(buff, PATH_MAX);
@@ -52,6 +53,11 @@ void	ms_cmd_cd(char **av, int ac, char ***env)
 			temp = ft_strdup(av[1]);
 		path = ms_cd_dash(temp, env);
 		free(temp);
+	}
+	else if (av[1][0] == '~')
+	{
+		line = ms_find_env("HOME", env);
+		path = ft_strjoin(ft_strchr(env[0][line], '/'), &av[1][1]);
 	}
 	if (ac > 2)
 		ms_err(2);

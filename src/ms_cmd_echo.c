@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:38:15 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/25 14:23:09 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 13:11:24 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ms_cmd_echo(char **av)
 {
 	int		i;
+	char	*ptr;
 
 	i = 1;
 	if (!av[i])
@@ -22,7 +23,11 @@ void	ms_cmd_echo(char **av)
 	while (av[i])
 	{
 		if (ft_strchr(av[i], '='))
-			ft_putstr(ft_strchr(av[i], '/'));
+		{
+			ptr = ft_strchr(av[i], '=');
+			ptr++;
+			ft_putstr(ptr);
+		}
 		else
 			ft_putstr(av[i]);
 		i++;

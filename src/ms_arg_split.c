@@ -6,13 +6,13 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 09:37:21 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/25 14:41:59 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 12:59:16 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	**ms_arg_split(char *str)
+char	**ms_arg_split(char *str, int ac)
 {
 	char	**av;
 	int		i;
@@ -24,12 +24,12 @@ char	**ms_arg_split(char *str)
 	k = 0;
 	if (!str)
 		return (NULL);
-	if (ms_argscnt(str) == -1)
+	if (ac <= 0)
 		return (NULL);
-	if (!(av = (char **)malloc(sizeof(char *) * (ms_argscnt(str) + 1))))
+	if (!(av = (char **)malloc(sizeof(char *) * (ac + 1))))
 		ms_err(1);
-	av[ms_argscnt(str)] = NULL;
-	while (str[i] != '\0' && k < ms_argscnt(str))
+	av[ac] = NULL;
+	while (str[i] != '\0' && k < ac)
 	{
 		while (str[i] == ' ' || str[i] == '\t')
 			i++;
