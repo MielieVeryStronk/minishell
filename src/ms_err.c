@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 10:07:20 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/28 09:26:00 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 09:48:16 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	ms_err(int	err)
 		ft_printf("invalid path\n");
 	else if (err == 8)
 		ft_printf("invalid command/directory\n");
+	else if (err == 9)
+		ft_printf("fork failed\n");
 	ft_printcolour("cyan");
 }

@@ -6,37 +6,45 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:30:44 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/28 11:51:10 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 10:30:44 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_cmd_sys(char **av, int ac, char ***env)
+void	ft_cmd_sys(char ***av, char ***env)
 {
 	pid_t	pid;
+	int		err;
 
 	pid = fork();
-	if (pid == 0)
+	err = 1;
+	if (pid < 0)
+		ms_err(9);
+	if (pid != 0)
+	{
+		wait(NULL);
+	}
+	else if (pid == 0)
 	{
 		int		line;
 		char	**path;
 
-		if (ac == 1)
-			av[1] = ft_strdup(".");
 		line = ms_find_env("PATH=", env);
 		path = ft_strsplit(ft_strchr(env[0][line], '/'), ':');
 		line = 0;
-		ft_putchar('\n');
 		while (path[line])
 		{
 			if (!access(path[line], F_OK))
 			{
-				execve(ft_strjoin_mult(3, path[line], "/", av[0]), av, *env);
+				if (!execve(ft_strjoin_mult(3, path[line], "/", av[0][0]), av[0], *env))
+					err = 0;
 			}
 			line++;
 		}
-		kill(pid, SIGKILL);
+		if (err != 0)
+			ms_err(8);
+		exit(0);
 	}
 }
 
@@ -60,5 +68,5 @@ void	ms_cmd_all(char **av, int ac, char ***env)
 	/*else if (!ft_strcmp(av[0], "./minishell"))
 		ft_putchar('\n');*/
 	else
-		ft_cmd_sys(av, ac, env);
+		ft_cmd_sys(&av, env);
 }
