@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 16:17:29 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 09:07:47 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 15:10:49 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,18 @@ void	ms_header()
 
 int		main(int argc, char **argv, char **env)
 {
+	char	**av;
+
 	(void)(argc && argv);
 	ms_header();
+	env = ms_env_mlc(env);
 	while (1)
 	{
 		ms_printprompt();
-		ms_get_av(&env);
+		av = ms_get_av(&env);
+		if (av)
+			ms_free_tab(av);
 	}
+	ms_free_tab(env);
 	return (0);
 }

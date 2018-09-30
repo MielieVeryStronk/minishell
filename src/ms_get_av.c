@@ -6,19 +6,19 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/30 12:58:46 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 14:15:23 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_get_av(char ***env)
+char	**ms_get_av(char ***env)
 {
 	char	**av;
 	char	*line;
 	int		ac;
 
-	*env = ms_env_mlc(*env);
+	av = NULL;
 	get_next_line(1, &line);
 	if (ft_strlen(line) == 0)
 		ft_printf("");
@@ -33,5 +33,5 @@ void	ms_get_av(char ***env)
 			ms_cmd_all(av, ac, env);
 		}
 	}
-	//ms_free_tab(env);
+	return (av);
 }

@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 09:07:09 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/25 09:10:52 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 14:46:52 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ms_free_tab(char **tab)
 	{
 		if (tab[i])
 			free(tab[i]);
+		i++;
 	}
-	/*if (tab)
-		free(tab);*/
+	if (tab)
+		free(tab);
 }

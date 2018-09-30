@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 08:53:08 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/26 13:39:04 by enikel           ###   ########.fr       */
+/*   Updated: 2018/09/30 14:53:11 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**ms_env_mlc(char **old)
 	char	**new;
 
 	i = 0;
-	new = (char**)malloc((sizeof(char *) * ms_env_size(old)) + 1);
+	new = malloc((sizeof(char *) * (ms_env_size(old) + 1)));
 	new[ms_env_size(old)] = NULL;
 	while (old[i])
 	{
