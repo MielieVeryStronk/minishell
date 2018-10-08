@@ -6,14 +6,14 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 16:17:29 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/30 15:10:49 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/08 16:08:35 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_header()
-{	
+void	ms_header(void)
+{
 	ft_printcolour("black");
 	ft_printf("********************************************\n");
 	ft_printcolour("cyan");

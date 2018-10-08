@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:30:44 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/30 15:21:06 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/08 15:59:39 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_cmd_sys(char ***av, char ***env)
 
 void	ms_cmd_all(char **av, int ac, char ***env)
 {
-	if (!ft_strcmp(av[0], "quit") || !ft_strcmp(av[0], "q")||
+	if (!ft_strcmp(av[0], "quit") || !ft_strcmp(av[0], "q") ||
 	!ft_strcmp(av[0], "exit"))
 		exit(0);
 	else if (!ft_strcmp(av[0], "echo"))

@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 09:46:10 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/30 13:07:38 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/08 16:00:02 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ms_cd_dash(char *av, char ***env)
 	char	*path;
 	int		line;
 
-	path = ft_strnew(PATH_MAX);
+	path = NULL;
 	if (!ft_strcmp(av, "-"))
 	{
 		line = ms_find_env("OLDPWD", env);
@@ -29,7 +29,7 @@ char	*ms_cd_dash(char *av, char ***env)
 	{
 		line = ms_find_env("HOME", env);
 		if (line >= 0)
-		path = ft_strdup(ft_strchr(env[0][line], '/'));
+			path = ft_strdup(ft_strchr(env[0][line], '/'));
 	}
 	return (path);
 }
@@ -53,6 +53,7 @@ void	ms_cmd_cd(char **av, int ac, char ***env)
 			temp = ft_strdup(av[1]);
 		path = ms_cd_dash(temp, env);
 		free(temp);
+		free(path);
 	}
 	else if (av[1][0] == '~')
 	{
@@ -67,9 +68,11 @@ void	ms_cmd_cd(char **av, int ac, char ***env)
 		av[2] = buff;
 		ms_cmd_setenv(&av, 3, env);
 		getcwd(buff, PATH_MAX);
+		ft_strdel(&av[1]);
 		av[1] = ft_strdup("PWD");
 		av[2] = buff;
 		ms_cmd_setenv(&av, 3, env);
+		ft_strdel(&av[1]);
 	}
 	else
 		ms_err(7);

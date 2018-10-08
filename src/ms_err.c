@@ -6,21 +6,21 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 10:07:20 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/30 09:48:16 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/08 15:57:07 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ms_err(int	err)
+void	ms_err(int err)
 {
 	ft_printcolour("red");
 	ft_printf("minishell: ");
 	if (err == 1)
-		{
-			ft_printf("malloc error\n");
-			exit (0);
-		}
+	{
+		ft_printf("malloc error\n");
+		exit(0);
+	}
 	else if (err == 2)
 		ft_printf("incorrect number of arguments\n");
 	else if (err == 3)

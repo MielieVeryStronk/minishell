@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 09:20:41 by enikel            #+#    #+#             */
-/*   Updated: 2018/09/27 13:51:41 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/08 16:10:59 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ms_sub_var(char ***av, char ***env)
 			{
 				free(av[0][i]);
 				av[0][i] = env[0][j];
-				/*av[0][i] = ft_strdup(ft_strchr(env[0][j], '/'));*/
 				found = 1;
 			}
 			j++;
