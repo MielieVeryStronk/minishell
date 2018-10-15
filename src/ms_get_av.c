@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:47:18 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/08 15:55:06 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/15 15:33:05 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ char	**ms_get_av(char ***env)
 	else
 	{
 		ac = ms_argscnt(line);
+		if (ac == -1)
+			ms_err(3);
 		av = ms_arg_split(line, ac);
-		free(line);
 		if (av != NULL)
 		{
 			ms_sub_var(&av, env);
 			ms_cmd_all(av, ac, env);
 		}
 	}
+	free(line);
 	return (av);
 }

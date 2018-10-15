@@ -6,11 +6,27 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 09:20:41 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/08 16:10:59 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/15 11:46:11 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int		ms_find_var(char ***av, char ***env, int i, int j)
+{
+	int		found;
+
+	found = 0;
+	if (av[0][i][0] == '$' && ft_strzstr(env[0][j], &av[0][i][1]))
+	{
+		free(av[0][i]);
+		av[0][i] = env[0][j];
+		found = 1;
+	}
+	if (!(av[0][i][0] == '$'))
+		return (1);
+	return (found);
+}
 
 void	ms_sub_var(char ***av, char ***env)
 {
@@ -27,19 +43,11 @@ void	ms_sub_var(char ***av, char ***env)
 		j = 0;
 		while (env[0][j])
 		{
-			if (av[0][i][0] == '$' && ft_strzstr(env[0][j], &av[0][i][1]))
-			{
-				free(av[0][i]);
-				av[0][i] = env[0][j];
-				found = 1;
-			}
+			found = ms_find_var(av, env, i, j);
 			j++;
 		}
 		if (found == 0)
-		{
-			ft_printf("minishell: variable not found: %s", av[0][i]);
-			ft_strdel(&av[0][i]);
-		}
+			ft_printf("minishell: variable not found: %s\n", av[0][i]);
 		found = 0;
 		i++;
 	}

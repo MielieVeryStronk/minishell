@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 14:33:07 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/08 16:13:21 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/15 08:33:21 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int		ms_argscnt(const char *str)
 			while (str[i] != '"' && str[i] != '\0')
 				i++;
 			if (str[i] != '"')
-			{
-				ms_err(3);
 				return (-1);
-			}
 			else
 				num++;
 		}

@@ -6,40 +6,27 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 12:30:44 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/08 15:59:39 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/15 11:46:58 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_cmd_sys(char ***av, char ***env)
+int		ft_do_cmd(char ***av, char ***env, int line, int err)
 {
-	pid_t	pid;
-	int		err;
 	char	*temp;
+	char	**path;
 
-	pid = fork();
-	err = 1;
-	if (pid < 0)
-		ms_err(9);
-	if (pid != 0)
+	line = ms_find_env("PATH", env);
+	path = ft_strsplit(ft_strchr(env[0][line], '/'), ':');
+	line = 0;
+	if (!access(av[0][0], F_OK))
 	{
-		wait(NULL);
+		if (!execve(av[0][0], av[0], *env))
+			err = 0;
 	}
-	else if (pid == 0)
-	{
-		int		line;
-		char	**path;
-
-		line = ms_find_env("PATH", env);
-		path = ft_strsplit(ft_strchr(env[0][line], '/'), ':');
-		line = 0;
-		if (!access(av[0][0], F_OK))
-		{
-			if (!execve(av[0][0], av[0], *env))
-				err = 0;
-		}
-		else while (path[line])
+	else
+		while (path[line])
 		{
 			if (!access(path[line], F_OK))
 			{
@@ -50,9 +37,28 @@ void	ft_cmd_sys(char ***av, char ***env)
 			}
 			line++;
 		}
+	ms_free_tab(path);
+	return (err);
+}
+
+void	ft_cmd_sys(char ***av, char ***env)
+{
+	pid_t	pid;
+	int		err;
+	int		line;
+
+	pid = fork();
+	err = 1;
+	line = 0;
+	if (pid < 0)
+		ms_err(9);
+	if (pid != 0)
+		wait(NULL);
+	else if (pid == 0)
+	{
+		err = ft_do_cmd(av, env, line, err);
 		if (err != 0)
 			ms_err(8);
-		ms_free_tab(path);
 		exit(0);
 	}
 }

@@ -6,11 +6,36 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 09:37:21 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/08 15:58:29 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/15 11:55:52 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int		ft_split_quote(char *str, char **av, int i, int k)
+{
+	int	j;
+
+	i++;
+	j = i;
+	while (str[j] != '"' && str[j] != '\0')
+		j++;
+	av[k++] = ft_strsub(str, i, j - i);
+	return (j);
+}
+
+int		ft_split_ws(char *str, char **av, int i, int k)
+{
+	int j;
+
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	j = i;
+	while (str[j] != ' ' && str[j] != '\t' && str[j] != '\0')
+		j++;
+	av[k++] = ft_strsub(str, i, (j - i));
+	return (j);
+}
 
 char	**ms_arg_split(char *str, int ac)
 {
@@ -22,9 +47,7 @@ char	**ms_arg_split(char *str, int ac)
 	i = 0;
 	j = 0;
 	k = 0;
-	if (!str)
-		return (NULL);
-	if (ac <= 0)
+	if (!str || ac <= 0)
 		return (NULL);
 	if (!(av = (char **)malloc(sizeof(char *) * (ac + 1))))
 		ms_err(1);
@@ -34,24 +57,9 @@ char	**ms_arg_split(char *str, int ac)
 		while (str[i] == ' ' || str[i] == '\t')
 			i++;
 		if (str[i] == '"')
-		{
-			i++;
-			j = i;
-			while (str[j] != '"' && str[j] != '\0')
-				j++;
-			av[k++] = ft_strsub(str, i, j - i);
-			i = j;
-		}
+			i = ft_split_quote(str, av, i, k++);
 		else if (str[i] != '\0')
-		{
-			while (str[i] == ' ' || str[i] == '\t')
-				i++;
-			j = i;
-			while (str[j] != ' ' && str[j] != '\t' && str[j] != '\0')
-				j++;
-			av[k++] = ft_strsub(str, i, (j - i));
-			i = j;
-		}
+			i = ft_split_ws(str, av, i, k++);
 		if (str[i] != '\0')
 			i++;
 	}
