@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 10:07:20 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/08 15:57:07 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/17 12:27:48 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ms_err(int err)
 	else if (err == 4)
 		ft_printf("env variable not found\n");
 	else if (err == 5)
-		ft_printf("env variable cannot contain '='\n");
+		ft_printf("env variable cannot contain '=' or '$'\n");
 	else if (err == 6)
 		ft_printf("multiple arguments not supported for cd\n");
 	else if (err == 7)
