@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 09:20:41 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/15 11:46:11 by enikel           ###   ########.fr       */
+/*   Updated: 2018/10/17 12:57:41 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ms_find_var(char ***av, char ***env, int i, int j)
 	if (av[0][i][0] == '$' && ft_strzstr(env[0][j], &av[0][i][1]))
 	{
 		free(av[0][i]);
-		av[0][i] = env[0][j];
+		av[0][i] = ft_strdup(env[0][j]);
 		found = 1;
 	}
 	if (!(av[0][i][0] == '$'))
