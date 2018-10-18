@@ -6,7 +6,7 @@
 #    By: enikel <enikel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 11:24:40 by enikel            #+#    #+#              #
-#    Updated: 2018/09/27 13:51:15 by enikel           ###   ########.fr        #
+#    Updated: 2018/10/18 11:05:23 by enikel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,11 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make all -C $(LIBFT_DIR)/
 	@ar rcs $(NAME).a $(OBJ) $(LIBFT_DIR)/*.o
+	@$(CC) $(NAME).a -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) -I $(INC_DIR) -o $@ -c $<
-
-shell: re
-	@$(CC) $(NAME).a -o $(NAME)
 
 clean: cleanlib
 	@rm -rf $(OBJ_DIR)
