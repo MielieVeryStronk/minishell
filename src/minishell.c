@@ -47,7 +47,9 @@ int		main(int argc, char **argv, char **env)
 	{
 		ms_printprompt();
 		av = ms_get_av(&env);
-		ms_free_tab(av);
+		if (av)
+			ms_free_tab(av);
+		sleep(10);
 	}
 	ms_free_tab(env);
 	return (0);
