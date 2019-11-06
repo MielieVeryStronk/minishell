@@ -6,7 +6,7 @@
 /*   By: enikel <enikel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 16:17:29 by enikel            #+#    #+#             */
-/*   Updated: 2018/10/18 11:04:47 by enikel           ###   ########.fr       */
+/*   Updated: 2019/11/05 10:56:08 by enikel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int		main(int argc, char **argv, char **env)
 		av = ms_get_av(&env);
 		if (av)
 			ms_free_tab(av);
-		sleep(10);
 	}
 	ms_free_tab(env);
 	return (0);

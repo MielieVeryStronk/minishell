@@ -79,7 +79,7 @@ void	ms_cmd_cd(char **av, int ac, char ***env)
 	{
 		line = ms_find_env("HOME", env);
 		free(path);
-		path = ft_strdup(ft_strchr(env[0][line], '/'));
+		path = ft_strjoin(ft_strdup(ft_strchr(env[0][line], '/')), &av[1][1]);
 	}
 	if (ac > 2)
 		ms_err(2);
